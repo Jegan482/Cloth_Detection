@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOLO Object Detection</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #eef2f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 650px;
+            width: 100%;
+            padding: 50px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: 600;
+            font-size: 2em;
+        }
+        .subtitle {
+            color: #95a5a6;
+            margin-bottom: 40px;
+        }
+        .upload-area {
+            border: 2px dashed #dce4ec;
+            padding: 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .upload-area:hover {
+            border-color: #3498db;
+            background-color: #ffffff;
+        }
+        .upload-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 20px;
+        }
+        .upload-text {
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        input[type="submit"] {
+            background: #3498db;
+            color: white;
+            padding: 15px 45px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+            margin-top: 30px;
+        }
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+        }
+        .error {
+            color: #e74c3c;
+            background-color: #fadde1;
+            border: 1px solid #f6b5bc;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Object Detection with YOLO</h1>
+        <p class="subtitle">Upload an image to identify objects within it.</p>
+        <form method="post" enctype="multipart/form-data">
+            <label for="file-upload" class="upload-area">
+                <img src="https://img.icons8.com/ios/100/3498db/camera--v1.png" alt="Camera Icon" class="upload-icon"/>
+                <span class="upload-text">Click to select an image</span>
+                <input type="file" name="file" id="file-upload" accept="image/png, image/jpeg, image/jpg" required>
+            </label>
+            <input type="submit" value="Detect Objects">
+        </form>
+        {% if error %}
+            <p class="error"><strong>Error:</strong> {{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
